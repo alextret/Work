@@ -1,20 +1,34 @@
 import React from "react";
 
-export class Home extends React.Component{
+export class Home extends React.Component {
     render(){
-        let content ="";
-        if (true) {
-            content = <p>Hello! </p>;
-        }
-         return(
+         var text = "Smth";
+        return (
              <div>
-                  <p>In a new Component</p>
-             { 5 == 4 ? "Yes" : "Fuck yourself"}
-             </div>
+            <p>In a new Component</p>
+            <p>{text}</p>
+            <p>Ure name is {this.props.name}, ure age is {this.props.age}</p>
+            <p>User Object => Name: {this.props.user.name}</p>
+            <div> 
+            <h4>Hobbies</h4>
+            <ul>
+               {this.props.user.hobbies.map((hobby, i) => <li key={i}>{hobby} </li>)}
+
+            </ul>
+            </div>
+        <hr/>
+            {this.props.children}
+            </div>
         
          
          );
    
-    }
-    
+     }
 }
+
+Home.propTypes = {
+    name: React.PropTypes.string,
+    age: React.PropTypes.number,
+    user: React.PropTypes.object,
+    children: React.PropTypes.element.isRequired
+};
