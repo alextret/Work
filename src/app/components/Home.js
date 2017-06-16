@@ -3,12 +3,22 @@ import React from "react";
 export class Home extends React.Component {
     constructor(props){
         super();
-        this.age = props.age;
+        this.state =  {
+          age: props.initialAge,
+            status: 0
+            
+        };
+    setTimeout(() => {
+         this.setState({
+             status: 1 
+         });
+     },3000);
     }
     
     onMakeOlder() {
-        this.age +=3;
-        console.log(this.age)
+       this.setState({
+           age: this.state.age + 3
+       });
     }
     
     render(){
@@ -16,7 +26,8 @@ export class Home extends React.Component {
              <div>
             <p>In a new Component</p>
             
-            <p>Ure name is {this.props.name}, ure age is {this.age}</p>
+            <p>Ure name is {this.props.name}, ure age is {this.state.age}</p>
+            <p>Status: {this.state.status}</p>
             <hr/>
             <button onClick={() => this.onMakeOlder()} className="btn btn-primary">Make me older</button>
             </div>
@@ -29,5 +40,5 @@ export class Home extends React.Component {
 
 Home.propTypes = {
     name: React.PropTypes.string,
-    age: React.PropTypes.number,
+    initialAge: React.PropTypes.number,
 };
